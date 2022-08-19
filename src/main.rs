@@ -1,11 +1,10 @@
-use std::io::Error;
-
-use crate::components::storage::AppStorage;
+use components::storage::AppStorage;
 
 mod components;
 
-fn main() -> Result<(), Error> {
-    let storage_dirs = AppStorage::build()?;
+fn main() -> std::io::Result<()> {
+    let storage_dirs = AppStorage::new()?;
+    storage_dirs.destroy()?;
     Ok(())
 }
 
